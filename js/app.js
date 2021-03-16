@@ -1,13 +1,12 @@
-
 //get the id for the images to generate them.
 const imageSpace=document.getElementById('imagesSpace');
 const firstImage=document.getElementById('firstImage');
 const secondImage=document.getElementById('secondImage');
 const thirdImage=document.getElementById('thirdImage');
 
-//git the id for the button and the imang's name list
+//git the id for the button and the imang's chart
 let buttonId=document.getElementById('ShowList');
-let imageList=document.getElementById('imageb');
+let chartid = document.getElementById('chartid').getContext('2d');
 
 //A constructer function.
 function SalesImages(url,name){
@@ -55,6 +54,10 @@ new SalesImages('./img/wine-glass.jpg', 'wine-glass');
 //first counter being declear to use later for counting some things
 let countr=25;
 
+//the votes and names arrayes to use them globaly.
+let ImagesName=[];
+let imagesVotes=[];
+let ImagesViews=[];
 
 //function to pic a random image each time the user click and append the images into three seperet places in html.
 function render(){
@@ -92,8 +95,13 @@ function runningTheImages(event) {
       if (SalesImages.all[i].name === event.target.title){
         SalesImages.all[i].votes++;//calculat the vote for each image
 
+        //pushing all of the votes and names into their arrayes so that I can use them globaly.
+        ImagesName.push(SalesImages.all[i].name);
+        imagesVotes.push(SalesImages.all[i].votes);
+
         SalesImages.all[i].view++;//calculat the views
         SalesImages.all.totalViews = SalesImages.all.totalViews + SalesImages.all[i].votes;
+        ImagesViews.push(SalesImages.all[i].view);
 
         //checking things
         console.log(SalesImages.all[i].view);
@@ -113,38 +121,24 @@ function runningTheImages(event) {
   }
 }
 
+//Chart function.
+function createChart(){
 
-//second counter being declear to use later for counting some things
-// let countr2=0;
+  //chart object.
+  let chartObject=new Chart(chartid,{
+    type: 'radar',//different types of Charts: bar , horizontalBar, pie, line, doughnuts, radar
 
-//this to show the list of selected products
-function showList() {
-  for(let i=0;i<SalesImages.all.length;i++){
-    // countr2++;
-
-    //creating the unordered list banana had 3 votes, and was seen 5 times.
-    let unodrederList=document.createElement('ul');
-    let List=document.createElement('li');
-
-    List.textContent=SalesImages.all[i].name +' had '+SalesImages.all[i].votes + ', and was seen ' + SalesImages.all[i].view + ' times.';
-    console.log(List);
-
-    //append the elemens to each other.
-    imageList.appendChild(unodrederList);
-    unodrederList.appendChild(List);
-
-  }
-  //creating the unordered list banana had 3 votes, and was seen 5 times.
-  let unodrederList=document.createElement('ul');
-  let List=document.createElement('li');
-
-  List.textContent='The total of voted images '+ SalesImages.all.totalViews;
-  console.log(List);
-
-  //append the elemens to each other.
-  imageList.appendChild(unodrederList);
-  unodrederList.appendChild(List);
-
+    data: {
+      labels:ImagesName,
+      datasets: [{
+        label: 'Images Options Votes',
+        backgroundColor: 'rgb(100, 99, 132)',
+        borderColor: 'rgb(255, 99, 132)',
+        data: imagesVotes,
+      }
+      ]
+    },
+  });
 }
 
 
@@ -153,5 +147,4 @@ render();
 
 //Adding the click event
 imageSpace.addEventListener('click',runningTheImages);
-buttonId.addEventListener('click',showList);
-
+buttonId.addEventListener('click',createChart);
