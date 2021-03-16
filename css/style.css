@@ -2,11 +2,14 @@
     padding: 0;
     margin: 0;
 }
+body{
+    background-image: url('http://scrapaneers.com/wp-content/uploads/2017/12/Screen-Shot-2017-11-16-at-2.02.18-PM-1.png');
+}
 
 #navbar {
     height: 80px;
     width: 100%;
-    background: rgb(0, 0,0,0.4);
+    background: rgba(209, 123, 123, 0.4);
 }
 
 
@@ -22,14 +25,13 @@
 }
 #navbar ul li a{
     font-size: 20px;
-    font-style: italic;
     font-weight:bolder;
     text-decoration: none;
-    color: rgb(231, 104, 19);
+    color: rgb(99, 10, 65);
 }
 
 main #firstImagep {
-    margin-top: 60px;
+    margin-top: -10px;
     display: grid;
     grid-template-columns: 100px 100px 100px;
     gap: 30px;
@@ -37,11 +39,38 @@ main #firstImagep {
 }
 
 main img {
-    display: inline-block;
+    display:-moz-inline-box;
     grid-template-rows: 200px;
     text-align: center;
     gap: 10px;
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
+    border: #ff6666;
 
+}
+main #imagesSpace{
+    margin-left: 400px;
+    margin-top: 50px;
+}
+main h1{
+    font-family: 'GFS Didot', serif;
+font-family: 'Redressed', cursive;
+font-family: 'Satisfy', cursive;
+    font-size: 64px;
+    font-style: italic;
+    text-align: center;
+    margin-top: -80px;
+}
+main p{
+    font-family: 'Redressed', cursive;
+    font-size: 42px;
+
+}
+button{
+    width: 300px;
+    height: 50px;
+    font-size: 15px;
+    font-weight: bold;
+   background-color: rgba(41, 102, 28, 0.4);
+   border: none;
 }

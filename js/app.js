@@ -126,14 +126,17 @@ function createChart(){
 
   //chart object.
   let chartObject=new Chart(chartid,{
-    type: 'radar',//different types of Charts: bar , horizontalBar, pie, line, doughnuts, radar
+    type: 'polarArea',//different types of Charts: bar , horizontalBar, pie, line, doughnuts, radar
 
     data: {
       labels:ImagesName,
       datasets: [{
         label: 'Images Options Votes',
-        backgroundColor: 'rgb(100, 99, 132)',
-        borderColor: 'rgb(255, 99, 132)',
+        backgroundColor:'#ff9999',
+        borderWidth:1,
+        // borderColor: '#00004d',
+        hoverBorderWidth:3,
+        hoverBorderColor:'#4d0026',
         data: imagesVotes,
       }
       ]
