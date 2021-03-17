@@ -123,8 +123,6 @@ let ImagesName=['bag','banana','bathroom','wine-glass','boots','breakfast','bubb
 let imagesVotes=[];
 let ImagesViews=[];
 
-
-
 //Chart function.
 function createChart(){
   for(let i=0;i<SalesImages.all[i].length;i++){
