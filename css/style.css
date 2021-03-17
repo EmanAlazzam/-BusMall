@@ -3,7 +3,8 @@
     margin: 0;
 }
 body{
-    background-image: url('http://scrapaneers.com/wp-content/uploads/2017/12/Screen-Shot-2017-11-16-at-2.02.18-PM-1.png');
+    background-image: url('https://al-marasem.com/wp-content/uploads/layerslider/Previous-v5-demo-slider/bg-1024x576.jpg');
+    background-size: cover;
 }
 
 #navbar {
@@ -71,6 +72,6 @@ button{
     height: 50px;
     font-size: 15px;
     font-weight: bold;
-   background-color: rgba(41, 102, 28, 0.4);
+   background-color: rgba(86, 95, 0, 0.4);
    border: none;
 }
