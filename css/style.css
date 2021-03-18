@@ -38,11 +38,7 @@ main #firstImagep {
     gap: 30px;
 
 }
-#class{
-    width: 70px;
-    height: 80px;
-    
-}
+
 main img {
     display:-moz-inline-box;
     grid-template-rows: 200px;
