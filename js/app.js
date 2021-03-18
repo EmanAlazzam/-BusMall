@@ -8,6 +8,7 @@ const thirdImage=document.getElementById('thirdImage');
 let buttonId=document.getElementById('ShowList');
 let chartid = document.getElementById('chartid').getContext('2d');
 
+const secondButton=document.getElementById('secondButton');
 //A constructer function.
 function SalesImages(url,name){
   this.name=name;
@@ -59,24 +60,35 @@ function render(){
   //pick a random index to the first image.
   const firstIndex=randomNumOfPic(0,SalesImages.all.length-1);
   const firstRandomImage=SalesImages.all[firstIndex];
+  SalesImages.all[firstIndex].view++;
+  ImagesViews.push(SalesImages.all[firstIndex].view);
 
   //pick a random index to the second image.
   const secondIndex=randomNumOfPic(0,SalesImages.all.length-1);
   const secondRandomImage=SalesImages.all[secondIndex];
+  SalesImages.all[secondIndex].view++;
+  ImagesViews.push(SalesImages.all[secondIndex].view);
+
   //pick a random index to the second image.
   const thirdIndex=randomNumOfPic(0,SalesImages.all.length-1);
   const thirdRandomImage=SalesImages.all[thirdIndex];
+  SalesImages.all[thirdIndex].view++;
+  ImagesViews.push(SalesImages.all[thirdIndex].view);
+
 
   if(secondRandomImage!==firstRandomImage && thirdRandomImage!==secondRandomImage && firstRandomImage !== thirdRandomImage){
   //a the pathe and the name to the image
     firstImage.src=firstRandomImage.imgURL;
     firstImage.title=firstRandomImage.name;
+
     //a the pathe and the name to the image
     secondImage.src=secondRandomImage.imgURL;
     secondImage.title=secondRandomImage.name;
+
     //a the path and the name to the image
     thirdImage.src=thirdRandomImage.imgURL;
     thirdImage.title=thirdRandomImage.name;
+
   }
 }
 //the function to run the images.
@@ -86,8 +98,8 @@ function runningTheImages(event) {
 
     for(let i=0;i<SalesImages.all.length;i++){
 
-      SalesImages.all[i].view++;//calculat the views
-      ImagesViews.push(SalesImages.all[i].view);
+      // SalesImages.all[i].view++;//calculat the views
+      // ImagesViews.push(SalesImages.all[i].view);
 
       if (SalesImages.all[i].name === event.target.title){
         SalesImages.all[i].votes++;//calculat the vote for each image
@@ -98,7 +110,6 @@ function runningTheImages(event) {
         imagesVotes.push(SalesImages.all[i].votes);
 
         // SalesImages.all.totalViews = SalesImages.all.totalViews + SalesImages.all[i].votes;
-
 
         //checking things
         console.log(SalesImages.all[i].view);
@@ -114,6 +125,7 @@ function runningTheImages(event) {
     //to remove the clicking the counter reach 25.
     else {
       removeEventListener('click', runningTheImages);
+      localStorage.setItem('Keies', JSON.stringify(SalesImages.all));
       // createChart();
     }
   }
@@ -125,6 +137,11 @@ let ImagesViews=[];
 
 //Chart function.
 function createChart(){
+  Chart.defaults.global.defaultFontFamily='lato';
+  Chart.defaults.global.defaultFontSize=15;
+  Chart.defaults.global.defaultFontColor='#00004d';
+
+
   for(let i=0;i<SalesImages.all[i].length;i++){
     imagesVotes.push(SalesImages.all[i].name);
     console.log(SalesImages.all[i].votes);
@@ -181,3 +198,20 @@ render();
 //Adding the click event
 imageSpace.addEventListener('click',runningTheImages);
 buttonId.addEventListener('click',createChart);
+buttonId.addEventListener('click',dataStore);
+
+//get storeged Data from Local Storge
+function dataStore() {
+  let dataNew = localStorage.getItem('Keies');
+  console.log(dataNew);
+
+  if (dataNew){
+    const updatedData=JSON.parse(dataNew);
+    SalesImages.all=updatedData;
+    console.log(updatedData);
+}
+  // convert the data (array) from a string to Object
+  return JSON.parse(dataNew);
+}
+
+dataStore();
