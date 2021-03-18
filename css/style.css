@@ -38,20 +38,26 @@ main #firstImagep {
     gap: 30px;
 
 }
-
+#class{
+    width: 70px;
+    height: 80px;
+    
+}
 main img {
     display:-moz-inline-box;
     grid-template-rows: 200px;
     text-align: center;
     gap: 10px;
-    width: 200px;
-    height: 200px;
-    border: #ff6666;
+    width: 300px;
+    height: 300px;
+    border: #af4242 solid;
+    margin: 20px;
 
 }
 main #imagesSpace{
-    margin-left: 400px;
+    margin-left: 200px;
     margin-top: 50px;
+
 }
 main h1{
     font-family: 'GFS Didot', serif;
@@ -65,6 +71,7 @@ font-family: 'Satisfy', cursive;
 main p{
     font-family: 'Redressed', cursive;
     font-size: 42px;
+    margin-left: 500px;
 
 }
 /* #contaner{
